@@ -1,3 +1,20 @@
+# Wikimedia Wallpaper Extension - grabs the current daily Picture of The Day (POTD) from Wikimedia Commons' servers as a wallpaper
+This extension for GNOME shell is a modification of neffo's <a href="https://github.com/neffo/bing-wallpaper-gnome-extension">Bing Wallpaper extension</a>, which grabs the current wallpaper displayed on Bing's webpage and uses it as the systems' wallpaper/lock-screen wallpaper. This merely modifies it so that it grabs the wallpaper from Wikimedia Commons' servers instead, taking the daily Picture Of The Day (POTD) as the GNOME system wallpaper.
+
+This repository is a **fork** of the original Bing Wallpaper repository; in order to make the functionality actually work (as the formats of the JSON files on both servers are completely different), this instead relies on a seperate converter to convert between the two JSON formats (the source code for the converter itself is in the "converter" folder on this repository).
+
+A web-server (assumed by the converter to be located at ```/var/www/html/```, the default for an Apache Web Server installation on Linux and Linux-based systems) will need to be run on the system for this extension to even work; for the extension to work, please force the converter to run at startup.
+
+For any issues, please report them to the Issues tab, as appropriate.
+
+The converter itself & extension is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC BY-NC-SA 4.0</a>; please credit both me and <a href="https://github.com/neffo">neffo</a>, the original creator of the Bing Wallpaper extension.
+
+This converter also utilizes parts of the <a href="https://github.com/google/gson">GSON</a>, <a href="https://commons.apache.org/proper/commons-io/">Apache Commons IO</a>, and <a href="https://github.com/jhy/jsoup">jsoup</a> libraries.
+
+As all of the functionality of the original extension remains *mostly* the same, the original documentation is listed below:
+
+---
+
 # GNOME Shell extension - Bing Wallpaper
 
 Bring some color to your GNOME desktop by syncing your desktop and lockscreen wallpapers with today's Microsoft Bing image of the day (the image you see when you visit Bing.com) with this extension. The intention of this extension is to just do what it needs to do and stay out of your way, with a few optional features to improve quality-of-life.
