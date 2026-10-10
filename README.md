@@ -1,7 +1,7 @@
 # Wikimedia Wallpaper Extension - grabs the current daily Picture of The Day (POTD) from Wikimedia Commons' servers as a wallpaper
 This extension for GNOME shell is a modification of neffo's <a href="https://github.com/neffo/bing-wallpaper-gnome-extension">Bing Wallpaper extension</a>, which grabs the current wallpaper displayed on Bing's webpage and uses it as the systems' wallpaper/lock-screen wallpaper. This merely modifies it so that it grabs the wallpaper from Wikimedia Commons' servers instead, taking the daily Picture Of The Day (POTD) as the GNOME system wallpaper.
 
-This repository is a **fork** of the original Bing Wallpaper repository; in order to make the functionality actually work (as the formats of the JSON files on both servers are completely different), this instead relies on a seperate converter to convert between the two JSON formats (the source code for the converter itself is in the "converter" folder on this repository).
+This repository is a **fork** of the original Bing Wallpaper repository; in order to make the functionality actually work (as the formats of the JSON files on both servers are completely different), this instead relies on a seperate converter to convert between the two JSON formats (the source code for the converter itself is in the ```converter``` folder on this repository).
 
 A web-server (assumed by the converter to be located at ```/var/www/html/```, the default for an Apache Web Server installation on Linux and Linux-based systems) will need to be run on the system for this extension to even work; for the extension to work, please force the converter to run at startup.
 
