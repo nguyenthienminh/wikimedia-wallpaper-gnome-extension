@@ -48,7 +48,7 @@ export var randomIntervals = [ {value: 'hourly', title: ('on the hour')},
                         {value: 'weekly', title: ('Sunday at midnight')},
                         { value: 'custom', title: ('User defined interval')} ];
 
-export var BingImageURL = 'https://www.bing.com/HPImageArchive.aspx';
+export var BingImageURL = 'http://localhost/wikimediaCommons.json';
 export var BingParams = { format: 'js', idx: '0' , n: '8' , mbl: '1' , mkt: '' } ;
 
 export function validate_icon(
