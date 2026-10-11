@@ -26,7 +26,7 @@ import * as Utils from './utils.js';
 import Thumbnail from './thumbnail.js';
 
 const BingImageURL = Utils.BingImageURL;
-const BingURL = 'https://www.bing.com';
+const BingURL = '';
 const IndicatorName = 'BingWallpaperIndicator';
 const TIMEOUT_SECONDS = 24 * 3600; // FIXME: this should use the end data from the json data
 const TIMEOUT_SECONDS_ON_HTTP_ERROR = 1 * 3600; // retry in one hour if there is a http error3
@@ -69,7 +69,9 @@ function notifyError(msg) {
 function doSetBackground(uri, schema) {
     let gsettings = new Gio.Settings({schema: schema});
     let prev = gsettings.get_string('picture-uri');
-    uri = 'file://' + uri;
+    let stringArray = uri.split('/');
+    let actualfilename = stringArray[stringArray.length - 1];
+    uri = 'file://' + uri.replace(actualfilename, '') + encodeURIComponent(actualfilename);
     gsettings.set_string('picture-uri', uri);
     try {
         gsettings.set_string('picture-uri-dark', uri);
@@ -135,7 +137,7 @@ class BingWallpaperIndicator extends Button {
         this.refreshItem = newMenuItem(_("Refresh Now"));
         this.settingsItem = newMenuItem(_("Settings"));
         this.openImageItem = newMenuItem(_("Open in image viewer"));
-        this.openImageInfoLinkItem = newMenuItem(_("Open Bing image information page"));
+        this.openImageInfoLinkItem = newMenuItem(_("Open Wikimedia Commons\' image information page"));
         this.imageResolutionItem = newMenuItem(_("Awaiting refresh..."));
 
         this.titleItem = new PopupMenu.PopupSubMenuMenuItem(_("Awaiting refresh..."), false);
@@ -818,7 +820,7 @@ class BingWallpaperIndicator extends Button {
     }
 
     _createImageNotification(image) {
-        let msg = _('Bing Wallpaper of the Day for') + ' ' + this._localeDate(image.fullstartdate);
+        let msg = _('Wikimedia Commons\' Picture of the Day for') + ' ' + this._localeDate(image.fullstartdate);
         let details = Utils.getImageTitle(image);
         this._createNotification(msg, details);
         BingLog('_createImageNotification: '+msg+' details: '+details);
@@ -906,7 +908,7 @@ class BingWallpaperIndicator extends Button {
 
             // set current image details at extension scope
             this.title = image.copyright.replace(/\s*[\(\（].*?[\)\）]\s*/g, '');
-            this.explanation = _('Bing Wallpaper of the Day for') + ' ' + this._localeDate(image.startdate);
+            this.explanation = _('Wikimedia Commons\' Picture of the Day for') + ' ' + this._localeDate(image.startdate);
             this.copyright = image.copyright.match(/[\(\（]([^)]+)[\)\）]/)[1].replace('\*\*', ''); // Japan locale uses （） rather than ()
             this.longstartdate = image.fullstartdate;
             this.imageinfolink = image.copyrightlink.replace(/^http:\/\//i, 'https://');
